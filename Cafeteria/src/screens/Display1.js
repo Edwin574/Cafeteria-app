@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity,Image } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import COLORS from "../utility/Colors"
 
 const logo = require("../../assets/JKUAT.png")
 
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     display:'flex',
-    backgroundColor: 'rgb(33, 188, 16)',
+    backgroundColor: COLORS.primaryGreen,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
     
   },
   text: {
-    color:'#ffffff',
+    color:COLORS.white,
     textAlign: "center",
     fontSize: 45,
     // marginTop:100,
@@ -42,14 +43,14 @@ const styles = StyleSheet.create({
   },
   button: {
     width:200,
-    backgroundColor: "#ffffff",
+    backgroundColor: COLORS.white,
     borderWidth: 0,
     borderRadius: 100,
     padding: 20,
     alignItems:'center',
   },
   buttontext: {
-    color: 'rgb(33, 188, 16)',
+    color: COLORS.primaryGreen,
     fontSize:20,
   }
 
