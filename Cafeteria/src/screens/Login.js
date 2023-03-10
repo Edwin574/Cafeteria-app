@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import CustomButton from "../components/CustomButton";
 import CustomInput from "../components/CustomInput";
 import COLORS from "../utility/Colors";
 
@@ -18,7 +19,7 @@ const Register = () => {
             marginVertical: 10,
           }}
         >
-          Dont have an account? register
+          Login into your account
         </Text>
         <View style={{ marginVertical: 20 }}>
           
@@ -39,7 +40,8 @@ const Register = () => {
             onFocus={() => {}}
           />
         </View>
-        <Text> Already have an account</Text>
+        <CustomButton title='REGISTER'/>
+        <Text> Dont have an account? Register</Text>
       </ScrollView>
     </SafeAreaView>
   );
