@@ -103,6 +103,7 @@ const Login = ({ navigation }) => {
             onFocus={() => {
               handleError(null, "password");
             }}
+            password
           />
         </View>
         <CustomButton title="LOGIN" onPress={validate} />
