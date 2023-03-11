@@ -1,21 +1,25 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import CustomButton from "../components/CustomButton";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+
 import COLORS from "../utility/Colors";
 
-const LandingPage = ({navigation}) => {
-    const goToLogin = () => {
-        navigation.navigate('login')
-    }
-    const goToSignUP = () => {
-        navigation.navigate('register')
-    }
+const LandingPage = ({ navigation }) => {
+  const goToLogin = () => {
+    navigation.navigate("login");
+  };
+  const goToSignUP = () => {
+    navigation.navigate("register");
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.text2}>ORDER FOOD AT YOUR OWN COMFORT</Text>
-      <CustomButton title='LOGIN' onPress={goToLogin}/>
+      <TouchableOpacity style={styles.button} onPress={goToLogin}>
+        <Text style={styles.buttontext}>LOGIN</Text>
+      </TouchableOpacity>
       <Text style={styles.text1}>Don't have an account?</Text>
-     <CustomButton title='REGISTER' onPress={goToSignUP}/>
+      <TouchableOpacity style={styles.button} onPress={goToSignUP}>
+        <Text style={styles.buttontext}>REGISTER</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -28,18 +32,32 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.primaryGreen,
     display: "flex",
     flexDirection: "column",
-    padding:10,
+    padding: 10,
     gap: 20,
-        justifyContent: "center",
-    alignItems:"center"
+    justifyContent: "center",
+    alignItems: "center",
   },
   text1: {
-    color:COLORS.white,
+    color: COLORS.white,
   },
   text2: {
     color: COLORS.white,
     fontSize: 40,
     textAlign: "center",
+    fontWeight: "bold",
+  },
+  button: {
+    height: 55,
+    width: "90%",
+    backgroundColor: COLORS.white,
+    borderWidth: 0,
+    borderRadius: 10,
+    padding: 15,
+    alignItems: "center",
+  },
+  buttontext: {
+    color: COLORS.primaryGreen,
+    fontSize: 20,
     fontWeight: "bold",
   },
 });

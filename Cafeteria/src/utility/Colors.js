@@ -4,7 +4,8 @@ const COLORS = {
     white: '#ffffff',
     mediumGreen: '#3cb371',
     light: '#F3F4FB',
-    black:'#000000',
+    black: '#000000',
+    red:'#ff0000',
     
 }
 

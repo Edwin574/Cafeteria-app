@@ -13,14 +13,14 @@ const styles = StyleSheet.create({
   button: {
     height: 55,
     width: "90%",
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.primaryGreen,
     borderWidth: 0,
     borderRadius: 10,
     padding: 15,
     alignItems: "center",
   },
   buttontext: {
-    color: COLORS.primaryGreen,
+    color: COLORS.white,
     fontSize: 20,
     fontWeight: "bold",
   },
