@@ -113,7 +113,7 @@ const Login = ({ navigation }) => {
             navigation.navigate("register");
           }}
         >
-          Dont have an account? Register
+          Don't have an account? Register
         </Text>
       </ScrollView>
     </SafeAreaView>

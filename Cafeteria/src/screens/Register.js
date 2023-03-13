@@ -7,6 +7,7 @@ import {
   ScrollView,
   Keyboard,
   Alert,
+  TouchableOpacity,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -133,6 +134,7 @@ const Register = ({ navigation }) => {
           />
         </View>
         <CustomButton title="Register" onPress={validate} />
+        
         <Text onPress={() => navigation.navigate("login")} style={styles.text1}>
           Already have an account? Login
         </Text>
@@ -158,6 +160,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     fontSize: 16,
-    marginVertical:15,
+    marginVertical: 15,
   },
 });
