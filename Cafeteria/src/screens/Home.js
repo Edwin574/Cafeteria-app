@@ -85,34 +85,36 @@ const Home = ({ navigation }) => {
     </View>
   );
   const foodItem = ({ item }) => (
-    <View style={styles.fooditem}>
-      <Text>{item.name}</Text>
-      <Text>{`KSH.${item.price}`}</Text>
-      <View style={{ flexDirection: "row" }}>
-        <MaterialCommunityIcons
-          name="cart-minus"
-          size={20}
-          color={COLORS.primaryGreen}
-          style={styles.cart}
-          onPress={() => {
-            setCartValue(cartValue - 1);
-          }}
-        />
-        <MaterialIcons
-          name="add-shopping-cart"
-          size={20}
-          color={COLORS.primaryGreen}
-          style={styles.cart}
-          onPress={() => {
-            setCartValue(cartValue + 1);
-          }}
-        />
+    <View style={{backgroundColor:COLORS.red}}>
+      <View style={styles.fooditem}>
+        <Text style={{fontWeight:'bold'}}>{item.name}</Text>
+        <Text style={{fontWeight:'bold'}}>{`KSH.${item.price}`}</Text>
+        <View style={{ flexDirection: "row" }}>
+          <MaterialCommunityIcons
+            name="cart-minus"
+            size={20}
+            color={COLORS.primaryGreen}
+            style={styles.cart}
+            onPress={() => {
+              setCartValue(cartValue - 1);
+            }}
+          />
+          <MaterialIcons
+            name="add-shopping-cart"
+            size={20}
+            color={COLORS.primaryGreen}
+            style={styles.cart}
+            onPress={() => {
+              setCartValue(cartValue + 1);
+            }}
+          />
+        </View>
       </View>
     </View>
   );
   const sectionTitle = ({ section }) => (
-    <View style={{ backgroundColor: COLORS.primaryGreen, padding: 10 }}>
-      <Text>{section.title}</Text>
+    <View style={{ backgroundColor: COLORS.primaryGreen, padding: 10, }}>
+      <Text style={{color:COLORS.white,fontWeight:'bold',textAlign:'center',fontSize:25}}>{section.title}</Text>
     </View>
   );
   const sections = [
@@ -178,13 +180,13 @@ const styles = StyleSheet.create({
   },
   fooditem: {
     // position: "relative",
-    padding: 15,
+    padding: 10,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    backgroundColor: COLORS.red,
-    borderBottomWidth: 1,
-    borderBottomColor: COLORS.black,
+    backgroundColor: COLORS.white,
+    // borderBottomWidth: 1,
+    // borderBottomColor: COLORS.black,
     marginVertical: 5,
     marginHorizontal: 5,
     borderRadius: 10,
