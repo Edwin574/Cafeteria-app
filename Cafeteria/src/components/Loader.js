@@ -20,7 +20,7 @@ const Loader = ({ visible = false }) => {
           <Text style={{marginLeft:10,fontSize:16}}>Loading...</Text>
         </View>
       </View>
-    )
+    )``
   );
 };
 const styles = StyleSheet.create({
