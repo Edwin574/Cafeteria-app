@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import {
   View,
   Text,
@@ -12,7 +12,11 @@ import COLORS from "../utility/Colors";
 
 const image = require("../../assets/JKUAT.png");
 
-const NavigationView = () => {
+const NavigationView = ({ drawer, navigation }) => {
+  // drawer=useRef(null)
+  const closeDrawer = () => {
+    drawer.current.closeDrawer();
+  };
   return (
     <View style={styles.container}>
       <View style={{ width: "100%", flex: 1 }}>
@@ -26,7 +30,7 @@ const NavigationView = () => {
               name="close-circle-outline"
               size={35}
               color={COLORS.white}
-              onPress={() => drawer.current.closeDrawer()}
+              onPress={closeDrawer}
             />
           </View>
         </ImageBackground>
@@ -34,11 +38,17 @@ const NavigationView = () => {
       <View style={{ flex: 2 }}>
         <Text style={styles.paragraph}>CREATED BY COMRADE FOR COMRADES</Text>
         <View style={{ padding: 10 }}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate("profile")}
+          >
             <MaterialIcons name="person" size={40} color="white" />
             <Text style={styles.drawerText}>Profile</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate("cart")}
+          >
             <MaterialCommunityIcons
               name="cart-arrow-up"
               size={40}
@@ -46,7 +56,10 @@ const NavigationView = () => {
             />
             <Text style={styles.drawerText}>Orders</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate("deposit")}
+          >
             <MaterialCommunityIcons
               name="cash-multiple"
               size={40}
@@ -59,6 +72,7 @@ const NavigationView = () => {
               styles.button,
               { borderBottomWidth: 1, borderBottomColor: COLORS.black },
             ]}
+            onPress={() => navigation.navigate("statistics")}
           >
             <MaterialCommunityIcons
               name="google-analytics"

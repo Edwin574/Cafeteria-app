@@ -12,7 +12,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import COLORS from "../utility/Colors";
 
 import FoodItems from "../Data/FoodItems";
-import NavigationView from "./draweritems";
+import NavigationView from "../components/draweritems";
 // import HumbergerModal from "../components/humbergerModal";
 
 const Home = ({ navigation }) => {
@@ -74,7 +74,7 @@ const Home = ({ navigation }) => {
         ref={drawer}
         drawerWidth={300}
         drawerPosition={drawerPosition}
-        renderNavigationView={NavigationView}
+        renderNavigationView={() => <NavigationView drawer={drawer} />}
       >
         <View style={styles.navbar}>
           <MaterialCommunityIcons
