@@ -6,113 +6,61 @@ import {
   StyleSheet,
   SectionList,
   DrawerLayoutAndroid,
-  Button,
-  ImageBackground,
-  TouchableOpacity,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import COLORS from "../utility/Colors";
 
 import FoodItems from "../Data/FoodItems";
+import NavigationView from "../components/draweritems";
 // import HumbergerModal from "../components/humbergerModal";
 
-const image = require("../../assets/JKUAT.png");
 const Home = ({ navigation }) => {
   const [cartValue, setCartValue] = useState(0);
-  const drawer = useRef(null);
-  const drawerPosition = "right";
 
-  const navigationView = () => (
-    <View style={styles.container}>
-      <View style={{ width: "100%", flex: 1 }}>
-        <ImageBackground
-          source={image}
-          resizeMode="contain"
-          style={styles.image}
-        >
-          <View style={{ alignItems: "flex-end", paddingRight: 20 }}>
-            <MaterialCommunityIcons
-              name="close-circle-outline"
-              size={35}
-              color={COLORS.white}
-              onPress={() => drawer.current.closeDrawer()}
-            />
-          </View>
-        </ImageBackground>
-      </View>
-      <View style={{ flex: 2 }}>
-        <Text style={styles.paragraph}>CREATED BY COMRADE FOR COMRADES</Text>
-        <View style={{ padding: 10 }}>
-          <TouchableOpacity style={styles.button}>
-            <MaterialIcons name="person" size={40} color="white" />
-            <Text style={styles.drawerText}>Profile</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <MaterialCommunityIcons
-              name="cart-arrow-up"
-              size={40}
-              color="white"
-            />
-            <Text style={styles.drawerText}>Orders</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <MaterialCommunityIcons
-              name="cash-multiple"
-              size={40}
-              color="white"
-            />
-            <Text style={styles.drawerText}>Deposit Cash</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[
-              styles.button,
-              { borderBottomWidth: 1, borderBottomColor: COLORS.black },
-            ]}
-          >
-            <MaterialCommunityIcons
-              name="google-analytics"
-              size={40}
-              color="white"
-            />
-            <Text style={styles.drawerText}>Statistics</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-      <View>
-        <MaterialIcons name="logout" size={24} color="black" />
-      </View>
-    </View>
-  );
+  const drawerPosition = "right";
+  const drawer = useRef(null);
+
   const foodItem = ({ item }) => (
-    <View style={styles.fooditem}>
-      <Text>{item.name}</Text>
-      <Text>{`KSH.${item.price}`}</Text>
-      <View style={{ flexDirection: "row" }}>
-        <MaterialCommunityIcons
-          name="cart-minus"
-          size={20}
-          color={COLORS.primaryGreen}
-          style={styles.cart}
-          onPress={() => {
-            setCartValue(cartValue - 1);
-          }}
-        />
-        <MaterialIcons
-          name="add-shopping-cart"
-          size={20}
-          color={COLORS.primaryGreen}
-          style={styles.cart}
-          onPress={() => {
-            setCartValue(cartValue + 1);
-          }}
-        />
+    <View style={{ backgroundColor: COLORS.red }}>
+      <View style={styles.fooditem}>
+        <Text style={{ fontWeight: "bold" }}>{item.name}</Text>
+        <Text style={{ fontWeight: "bold" }}>{`KSH.${item.price}`}</Text>
+        <View style={{ flexDirection: "row" }}>
+          <MaterialCommunityIcons
+            name="cart-minus"
+            size={20}
+            color={COLORS.primaryGreen}
+            style={styles.cart}
+            onPress={() => {
+              setCartValue(cartValue - 1);
+            }}
+          />
+          <MaterialIcons
+            name="add-shopping-cart"
+            size={20}
+            color={COLORS.primaryGreen}
+            style={styles.cart}
+            onPress={() => {
+              setCartValue(cartValue + 1);
+            }}
+          />
+        </View>
       </View>
     </View>
   );
   const sectionTitle = ({ section }) => (
     <View style={{ backgroundColor: COLORS.primaryGreen, padding: 10 }}>
-      <Text>{section.title}</Text>
+      <Text
+        style={{
+          color: COLORS.white,
+          fontWeight: "bold",
+          textAlign: "center",
+          fontSize: 25,
+        }}
+      >
+        {section.title}
+      </Text>
     </View>
   );
   const sections = [
@@ -126,7 +74,7 @@ const Home = ({ navigation }) => {
         ref={drawer}
         drawerWidth={300}
         drawerPosition={drawerPosition}
-        renderNavigationView={navigationView}
+        renderNavigationView={() => <NavigationView drawer={drawer} />}
       >
         <View style={styles.navbar}>
           <MaterialCommunityIcons
@@ -178,13 +126,13 @@ const styles = StyleSheet.create({
   },
   fooditem: {
     // position: "relative",
-    padding: 15,
+    padding: 10,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    backgroundColor: COLORS.red,
-    borderBottomWidth: 1,
-    borderBottomColor: COLORS.black,
+    backgroundColor: COLORS.white,
+    // borderBottomWidth: 1,
+    // borderBottomColor: COLORS.black,
     marginVertical: 5,
     marginHorizontal: 5,
     borderRadius: 10,
@@ -241,6 +189,17 @@ const styles = StyleSheet.create({
   drawerText: {
     color: COLORS.white,
     fontSize: 20,
+  },
+  logout: {
+    display: "flex",
+    flexDirection: "row",
+    padding: 15,
+    gap: 10,
+    alignItems: "center",
+    borderWidth: 2,
+    marginVertical: 30,
+    width: "50%",
+    borderRadius: 100,
   },
 });
 export default Home;
