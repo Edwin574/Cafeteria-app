@@ -74,7 +74,9 @@ const Home = ({ navigation }) => {
         ref={drawer}
         drawerWidth={300}
         drawerPosition={drawerPosition}
-        renderNavigationView={() => <NavigationView drawer={drawer} />}
+        renderNavigationView={() => (
+          <NavigationView drawer={drawer} navigation={navigation} />
+        )}
       >
         <View style={styles.navbar}>
           <MaterialCommunityIcons

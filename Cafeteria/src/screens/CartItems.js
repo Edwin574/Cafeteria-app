@@ -1,13 +1,26 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React, { useRef } from "react";
+import { View, Text, DrawerLayoutAndroid, SafeAreaView } from "react-native";
+import COLORS from "../utility/Colors";
+import NavigationView from "../components/draweritems";
 
-const CartItems = () => {
+const CartItems = ({navigation}) => {
+  
+  drawer = useRef(null);
   return (
-    <View style={{ flex: 1 ,paddingTop:50}}>
-      <View>
-        <Text>These are your cart items</Text>
-      </View>
-    </View>
+    <SafeAreaView style={{ backgroundColor: COLORS.white, flex: 1 }}>
+      <DrawerLayoutAndroid
+        ref={drawer}
+        drawerWidth={300}
+        drawerPosition='right'
+        renderNavigationView={() => (
+          <NavigationView drawer={drawer} navigation={navigation} />
+        )}
+      >
+        <View style={{ flex: 1, paddingTop: 50 }}>
+          <Text>You can view your orders</Text>
+        </View>
+      </DrawerLayoutAndroid>
+    </SafeAreaView>
   );
 };
 

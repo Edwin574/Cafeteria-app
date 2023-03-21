@@ -13,7 +13,6 @@ import COLORS from "../utility/Colors";
 const image = require("../../assets/JKUAT.png");
 
 const NavigationView = ({ drawer, navigation }) => {
-  // drawer=useRef(null)
   const closeDrawer = () => {
     drawer.current.closeDrawer();
   };
@@ -40,7 +39,9 @@ const NavigationView = ({ drawer, navigation }) => {
         <View style={{ padding: 10 }}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate("profile")}
+            onPress={() => {
+              navigation.navigate("profile");
+            }}
           >
             <MaterialIcons name="person" size={40} color="white" />
             <Text style={styles.drawerText}>Profile</Text>
@@ -84,7 +85,10 @@ const NavigationView = ({ drawer, navigation }) => {
         </View>
       </View>
       <View style={{ alignItems: "center" }}>
-        <TouchableOpacity style={styles.logout}>
+        <TouchableOpacity
+          style={styles.logout}
+          onPress={() => navigation.navigate("login")}
+        >
           <MaterialIcons name="logout" size={24} color="white" />
           <Text style={styles.drawerText}>Log out</Text>
         </TouchableOpacity>
@@ -105,21 +109,17 @@ const styles = StyleSheet.create({
     borderBottomColor: COLORS.light,
   },
   fooditem: {
-    // position: "relative",
     padding: 10,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     backgroundColor: COLORS.white,
-    // borderBottomWidth: 1,
-    // borderBottomColor: COLORS.black,
+
     marginVertical: 5,
     marginHorizontal: 5,
     borderRadius: 10,
   },
   cart: {
-    // position: "absolute",
-    // top: 10,
     backgroundColor: "white",
     width: 50,
     textAlign: "center",
@@ -137,17 +137,12 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 30,
     backgroundColor: COLORS.primaryGreen,
-
-    // alignItems: "center",
-    // justifyContent: "center",
-    // padding: 16,
   },
   navigationContainer: {
     backgroundColor: COLORS.red,
   },
   image: {
     flex: 1,
-    // height:100,
   },
   paragraph: {
     fontSize: 20,
@@ -159,7 +154,6 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: "center",
-    // backgroundColor: COLORS.white,
     borderTopWidth: 1,
     borderTopColor: COLORS.black,
     padding: 10,
