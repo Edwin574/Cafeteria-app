@@ -1,40 +1,50 @@
-import React, { useRef, useState } from "react";
-import { View, Text, DrawerLayoutAndroid, StyleSheet } from "react-native";
+import React, { useRef, useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  DrawerLayoutAndroid,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import NavigationView from "../components/draweritems";
 import { MaterialIcons } from "@expo/vector-icons";
 import COLORS from "../utility/Colors";
 import Navbar from "../components/Navbar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-// import AsyncStorage from "@react-native-async-storage/async-storage";
+// import CustomButton from "../components/CustomButton";
 
 const Profile = ({ navigation }) => {
   const drawerPosition = "right";
   const drawer = useRef(null);
-  const [profile, setProfile] = useState(null);
+  const [profile, setProfile] = useState({
+    fullname: "Loading...",
+    regNo: "Loading...",
+    phone: "Loading..",
+  });
   const UserProfile = () => {
-    AsyncStorage.getItem("userData")
-      .then((response) => {
-        const data = JSON.parse(response);
-        setProfile(data);
-        console.log(`profile:${profile}`);
-      })
-      .catch((error) => {
-        console.error(`Error retrieving profile data: ${error}`);
-      });
-    // JSON.parse(profileData);
-    // console.log(`profile:${profileData}`);
-    // setProfile(JSON.parse(profileData));
+    useEffect(() => {
+      AsyncStorage.getItem("userData")
+        .then((response) => {
+          const data = JSON.parse(response);
+          setProfile(data);
+        })
+        .catch((error) => {
+          console.error(`Error retrieving profile data: ${error}`);
+        });
+    }, []);
+
     return (
-      <View>
-        <Text>Name: {profile.fullname}</Text>
-        <Text>reg: {profile.regNo}</Text>
+      <View style={styles.profile_container}>
+        <Text style={styles.info}>Name: {profile.fullname}</Text>
+        <Text style={styles.info}>Registration No: {profile.regNo}</Text>
+        <Text style={styles.info}>Phone: {profile.phone}</Text>
       </View>
     );
   };
 
   return (
-    <SafeAreaView style={{ backgroundColor: COLORS.white, flex: 1 }}>
+    <SafeAreaView style={{ backgroundColor: "#F8F8FF", flex: 1 }}>
       <DrawerLayoutAndroid
         ref={drawer}
         drawerWidth={300}
@@ -53,7 +63,9 @@ const Profile = ({ navigation }) => {
             <MaterialIcons name="person" size={100} color="black" />
           </View>
           <UserProfile />
-          <Text>Welcome to your profile</Text>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttontext}>Edit details</Text>
+          </TouchableOpacity>
         </View>
       </DrawerLayoutAndroid>
     </SafeAreaView>
@@ -77,6 +89,35 @@ const styles = StyleSheet.create({
   text2: {
     color: COLORS.white,
     fontSize: 50,
+  },
+  profile_container: {
+    flex: 1,
+    padding: 10,
+    margin: 20,
+    flexDirection: "column",
+    gap: 1,
+  },
+  info: {
+    // borderWidth: 2,
+    padding: 10,
+    elevation: 8,
+    fontSize: 18,
+    backgroundColor: COLORS.white,
+    marginVertical: 10,
+  },
+  button: {
+    height: 55,
+    width: "100",
+    backgroundColor: COLORS.primaryGreen,
+    borderWidth: 0,
+    borderRadius: 10,
+    padding: 15,
+    alignItems: "center",
+  },
+  buttontext: {
+    color: COLORS.white,
+    fontSize: 14,
+    fontWeight: "bold",
   },
 });
 export default Profile;
