@@ -27,7 +27,6 @@ const FoodItems = [
       { name: "1.5 Chapati", price: 30 },
       { name: "GITHERI", price: 50 },
       { name: "FRIED VEGIES", price: 13 },
-      { name: "BLACK COFFEE", price: 13 },
     ],
   },
 ];
