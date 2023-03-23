@@ -11,6 +11,7 @@ const FoodItems = [
       { name: "ROCK BUN", price: 26 },
       { name: "SOFT BUN", price: 20 },
       { name: "NDAZI", price: 10 },
+      { name: "BLACK COFFEE", price: 13},
     ],
   },
   {
@@ -27,7 +28,8 @@ const FoodItems = [
       { name: "1.5 Chapati", price: 30 },
       { name: "GITHERI", price: 50 },
       { name: "FRIED VEGIES", price: 13 },
-          ],
+      { name: "BLACK COFFEE", price: 13 },
+    ],
   },
 ];
 export default FoodItems;

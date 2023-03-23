@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Cafeteria",
-    "slug": "Cafeteria",
+    "slug": "cafeteria",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,10 +21,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.edwin574.cafeteria"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ba7d3726-17d7-4616-b046-65f674eb2772"
+      }
+    },
+    "owner": "edwin574"
   }
 }
