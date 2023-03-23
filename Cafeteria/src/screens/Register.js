@@ -7,7 +7,6 @@ import {
   ScrollView,
   Keyboard,
   Alert,
-  TouchableOpacity,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -37,8 +36,8 @@ const Register = ({ navigation }) => {
     if (!inputs.regNo) {
       handleError("Please input registration number", "regNo");
       isValid = false;
-    } else if (!inputs.regNo.match(/^SCT\d{3}-\d{4}\/\d{4}$/)) {
-      handleError("please input valid registration number", "regNo");
+    } else if (!inputs.regNo.match(/^SCM\d{3}-\d{4}\/\d{4}$/)) {
+      handleError("Please input valid registration number", "regNo");
       isValid = false;
     }
     if (!inputs.phone) {
@@ -46,7 +45,7 @@ const Register = ({ navigation }) => {
       isValid = false;
     }
     if (!inputs.password) {
-      handleError("please input password", "password");
+      handleError("Please input password", "password");
       isValid = false;
     } else if (inputs.password.length < 5) {
       handleError("Min password length of 5", "password");
@@ -134,7 +133,7 @@ const Register = ({ navigation }) => {
           />
         </View>
         <CustomButton title="Register" onPress={validate} />
-        
+
         <Text onPress={() => navigation.navigate("login")} style={styles.text1}>
           Already have an account? Login
         </Text>
