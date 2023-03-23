@@ -15,7 +15,7 @@ import FoodItems from "../Data/FoodItems";
 import NavigationView from "../components/draweritems";
 // import HumbergerModal from "../components/humbergerModal";
 
-const Home = ({ navigation }) => {
+const Home = ({ navigation}) => {
   const [cartValue, setCartValue] = useState(0);
 
   const drawerPosition = "right";
@@ -27,15 +27,6 @@ const Home = ({ navigation }) => {
         <Text style={{ fontWeight: "bold" }}>{item.name}</Text>
         <Text style={{ fontWeight: "bold" }}>{`KSH.${item.price}`}</Text>
         <View style={{ flexDirection: "row" }}>
-          <MaterialCommunityIcons
-            name="cart-minus"
-            size={20}
-            color={COLORS.primaryGreen}
-            style={styles.cart}
-            onPress={() => {
-              setCartValue(cartValue - 1);
-            }}
-          />
           <MaterialIcons
             name="add-shopping-cart"
             size={20}
@@ -64,7 +55,7 @@ const Home = ({ navigation }) => {
     </View>
   );
   const sections = [
-    { title: "Beakfast", data: FoodItems[0].breakfast },
+    { title: "Breakfast", data: FoodItems[0].breakfast },
     { title: "General Meals", data: FoodItems[1].General },
   ];
 
@@ -133,15 +124,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     backgroundColor: COLORS.white,
-    // borderBottomWidth: 1,
-    // borderBottomColor: COLORS.black,
+
     marginVertical: 5,
     marginHorizontal: 5,
     borderRadius: 10,
   },
   cart: {
-    // position: "absolute",
-    // top: 10,
     backgroundColor: "white",
     width: 50,
     textAlign: "center",
@@ -159,17 +147,12 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 30,
     backgroundColor: COLORS.primaryGreen,
-
-    // alignItems: "center",
-    // justifyContent: "center",
-    // padding: 16,
   },
   navigationContainer: {
     backgroundColor: COLORS.red,
   },
   image: {
     flex: 1,
-    // height:100,
   },
   paragraph: {
     fontSize: 20,
@@ -181,7 +164,6 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: "center",
-    // backgroundColor: COLORS.white,
     borderTopWidth: 1,
     borderTopColor: COLORS.black,
     padding: 10,
