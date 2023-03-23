@@ -37,7 +37,7 @@ const Register = ({ navigation }) => {
     if (!inputs.regNo) {
       handleError("Please input registration number", "regNo");
       isValid = false;
-    } else if (!inputs.regNo.match(/^SCT\d{3}-\d{4}\/\d{4}$/)) {
+    } else if (!inputs.regNo.match(/^SCM\d{3}-\d{4}\/\d{4}$/)) {
       handleError("please input valid registration number", "regNo");
       isValid = false;
     }
