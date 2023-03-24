@@ -20,7 +20,6 @@ const LandingPage = ({ navigation }) => {
       <TouchableOpacity style={styles.button} onPress={goToSignUP}>
         <Text style={styles.buttontext}>REGISTER</Text>
       </TouchableOpacity>
-     
     </View>
   );
 };

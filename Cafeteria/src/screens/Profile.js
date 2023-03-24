@@ -28,6 +28,7 @@ const Profile = ({ navigation }) => {
         .then((response) => {
           const data = JSON.parse(response);
           setProfile(data);
+          // console.log(`profile:${profile}`);
         })
         .catch((error) => {
           console.error(`Error retrieving profile data: ${error}`);
@@ -63,6 +64,7 @@ const Profile = ({ navigation }) => {
             <MaterialIcons name="person" size={100} color="black" />
           </View>
           <UserProfile />
+
           <TouchableOpacity style={styles.button}>
             <Text style={styles.buttontext}>Edit details</Text>
           </TouchableOpacity>
@@ -91,7 +93,7 @@ const styles = StyleSheet.create({
     fontSize: 50,
   },
   profile_container: {
-    flex: 1,
+    // flex: 1,
     padding: 10,
     margin: 20,
     flexDirection: "column",
@@ -107,12 +109,13 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 55,
-    width: "100",
+    // width: 100,
     backgroundColor: COLORS.primaryGreen,
     borderWidth: 0,
     borderRadius: 10,
     padding: 15,
     alignItems: "center",
+    marginHorizontal: 80,
   },
   buttontext: {
     color: COLORS.white,
