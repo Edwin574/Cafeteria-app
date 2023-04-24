@@ -13,7 +13,6 @@ import COLORS from "../utility/Colors";
 
 import FoodItems from "../Data/FoodItems";
 import NavigationView from "../components/draweritems";
-// import HumbergerModal from "../components/humbergerModal";
 
 const Home = ({ navigation}) => {
   const [cartValue, setCartValue] = useState(0);
