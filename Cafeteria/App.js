@@ -11,6 +11,7 @@ import CartItems from './src/screens/CartItems';
 import Profile from './src/screens/Profile';
 import Deposit from './src/screens/Deposit';
 import Statistics from './src/screens/Statistics';
+
 const Stack=createNativeStackNavigator()
 export default function App() {
   return (

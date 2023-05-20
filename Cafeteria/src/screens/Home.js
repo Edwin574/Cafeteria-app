@@ -4,9 +4,10 @@ import {
   Text,
   SafeAreaView,
   StyleSheet,
-  SectionList,
   DrawerLayoutAndroid,
+  FlatList,
 } from "react-native";
+
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import COLORS from "../utility/Colors";
@@ -14,49 +15,39 @@ import COLORS from "../utility/Colors";
 import FoodItems from "../Data/FoodItems";
 import NavigationView from "../components/draweritems";
 
-const Home = ({ navigation}) => {
+const Home = ({ navigation }) => {
   const [cartValue, setCartValue] = useState(0);
 
   const drawerPosition = "right";
   const drawer = useRef(null);
 
-  const foodItem = ({ item }) => (
-    <View style={{ backgroundColor: COLORS.red }}>
-      <View style={styles.fooditem}>
-        <Text style={{ fontWeight: "bold" }}>{item.name}</Text>
-        <Text style={{ fontWeight: "bold" }}>{`KSH.${item.price}`}</Text>
-        <View style={{ flexDirection: "row" }}>
-          <MaterialIcons
-            name="add-shopping-cart"
-            size={20}
-            color={COLORS.primaryGreen}
-            style={styles.cart}
-            onPress={() => {
-              setCartValue(cartValue + 1);
-            }}
-          />
+  const showCategory = ({ item }) => {
+    const categoryTitle = Object.keys(item)[0];
+    const foods = item[categoryTitle];
+
+    return (
+      <View style={styles.categoryView}>
+        <Text style={styles.categoryTitle}>{categoryTitle}</Text>
+        <View style={styles.foodContainer}>
+          {foods.map((food, index) => (
+            <View key={index} style={styles.foodItem}>
+              <Text>{food.name}</Text>
+              <Text>Price: ${food.price}</Text>
+              <MaterialIcons
+                name="add-shopping-cart"
+                size={20}
+                color={COLORS.primaryGreen}
+                style={styles.cart}
+                onPress={() => {
+                  setCartValue(cartValue + 1);
+                }}
+              />
+            </View>
+          ))}
         </View>
       </View>
-    </View>
-  );
-  const sectionTitle = ({ section }) => (
-    <View style={{ backgroundColor: COLORS.primaryGreen, padding: 10 }}>
-      <Text
-        style={{
-          color: COLORS.white,
-          fontWeight: "bold",
-          textAlign: "center",
-          fontSize: 25,
-        }}
-      >
-        {section.title}
-      </Text>
-    </View>
-  );
-  const sections = [
-    { title: "Breakfast", data: FoodItems[0].breakfast },
-    { title: "General Meals", data: FoodItems[1].General },
-  ];
+    );
+  };
 
   return (
     <SafeAreaView style={{ backgroundColor: COLORS.white, flex: 1 }}>
@@ -83,7 +74,6 @@ const Home = ({ navigation}) => {
             />
             <Text style={styles.cartValue}>{cartValue}</Text>
           </View>
-
           <MaterialCommunityIcons
             name="menu"
             size={40}
@@ -92,18 +82,18 @@ const Home = ({ navigation}) => {
           />
         </View>
 
-        <View style={{ flex: 1 }}>
-          <SectionList
-            sections={sections}
-            keyExtractor={(item, index) => item.name + index}
-            renderItem={foodItem}
-            renderSectionHeader={sectionTitle}
+        <View style={styles.container}>
+          <FlatList
+            data={FoodItems}
+            renderItem={showCategory}
+            keyExtractor={(item, index) => index.toString()}
           />
         </View>
       </DrawerLayoutAndroid>
     </SafeAreaView>
   );
 };
+
 const styles = StyleSheet.create({
   navbar: {
     paddingTop: 50,
@@ -116,23 +106,18 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: COLORS.light,
   },
-  fooditem: {
-    // position: "relative",
+  foodItem: {
     padding: 10,
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     justifyContent: "space-between",
+    alignItems: "center",
     backgroundColor: COLORS.white,
-
     marginVertical: 5,
-    marginHorizontal: 5,
+    // marginHorizontal: 5,
     borderRadius: 10,
-  },
-  cart: {
-    backgroundColor: "white",
-    width: 50,
-    textAlign: "center",
-    borderRadius: 10,
+    width: 100,
+    height: 60,
   },
   cartValue: {
     position: "absolute",
@@ -145,44 +130,29 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 30,
+    paddingHorizontal: 10,
     backgroundColor: COLORS.primaryGreen,
   },
-  navigationContainer: {
-    backgroundColor: COLORS.red,
-  },
-  image: {
-    flex: 1,
-  },
-  paragraph: {
+  categoryTitle: {
     fontSize: 20,
-    color: COLORS.white,
-    textAlign: "center",
     fontWeight: "bold",
-    paddingHorizontal: 10,
-    paddingVertical: 10,
-  },
-  button: {
-    alignItems: "center",
-    borderTopWidth: 1,
-    borderTopColor: COLORS.black,
-    padding: 10,
-    flexDirection: "row",
-    gap: 20,
-  },
-  drawerText: {
-    color: COLORS.white,
-    fontSize: 20,
-  },
-  logout: {
-    display: "flex",
-    flexDirection: "row",
+    marginBottom: 10,
+    textAlign: 'center',
     padding: 15,
-    gap: 10,
+    backgroundColor:COLORS.red,
+  },
+  foodContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
     alignItems: "center",
-    borderWidth: 2,
-    marginVertical: 30,
-    width: "50%",
-    borderRadius: 100,
+  },
+  categoryView: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    marginBottom: 10,
   },
 });
+
 export default Home;
