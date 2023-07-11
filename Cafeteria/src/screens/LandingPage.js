@@ -10,6 +10,9 @@ const LandingPage = ({ navigation }) => {
   const goToSignUP = () => {
     navigation.navigate("register");
   };
+  const goToHome = () => {
+    navigation.navigate("home");
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.text2}>ORDER FOOD AT YOUR OWN COMFORT</Text>
@@ -19,6 +22,9 @@ const LandingPage = ({ navigation }) => {
       <Text style={styles.text1}>Don't have an account?</Text>
       <TouchableOpacity style={styles.button} onPress={goToSignUP}>
         <Text style={styles.buttontext}>REGISTER</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={goToHome}>
+        <Text style={styles.buttontext}>HOME</Text>
       </TouchableOpacity>
     </View>
   );

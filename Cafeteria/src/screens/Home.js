@@ -6,58 +6,24 @@ import {
   StyleSheet,
   SectionList,
   DrawerLayoutAndroid,
+  Pressable,
+  ScrollView,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import COLORS from "../utility/Colors";
+import BreakFast from "../Data/BreakfastData";
 
-import FoodItems from "../Data/FoodItems";
 import NavigationView from "../components/draweritems";
+import Navbar from "../components/Navbar";
+import MainCourses from "../Data/LunchfastData";
 // import HumbergerModal from "../components/humbergerModal";
 
-const Home = ({ navigation}) => {
+const Home = ({ navigation }) => {
   const [cartValue, setCartValue] = useState(0);
 
   const drawerPosition = "right";
   const drawer = useRef(null);
-
-  const foodItem = ({ item }) => (
-    <View style={{ backgroundColor: COLORS.red }}>
-      <View style={styles.fooditem}>
-        <Text style={{ fontWeight: "bold" }}>{item.name}</Text>
-        <Text style={{ fontWeight: "bold" }}>{`KSH.${item.price}`}</Text>
-        <View style={{ flexDirection: "row" }}>
-          <MaterialIcons
-            name="add-shopping-cart"
-            size={20}
-            color={COLORS.primaryGreen}
-            style={styles.cart}
-            onPress={() => {
-              setCartValue(cartValue + 1);
-            }}
-          />
-        </View>
-      </View>
-    </View>
-  );
-  const sectionTitle = ({ section }) => (
-    <View style={{ backgroundColor: COLORS.primaryGreen, padding: 10 }}>
-      <Text
-        style={{
-          color: COLORS.white,
-          fontWeight: "bold",
-          textAlign: "center",
-          fontSize: 25,
-        }}
-      >
-        {section.title}
-      </Text>
-    </View>
-  );
-  const sections = [
-    { title: "Breakfast", data: FoodItems[0].breakfast },
-    { title: "General Meals", data: FoodItems[1].General },
-  ];
 
   return (
     <SafeAreaView style={{ backgroundColor: COLORS.white, flex: 1 }}>
@@ -69,65 +35,78 @@ const Home = ({ navigation}) => {
           <NavigationView drawer={drawer} navigation={navigation} />
         )}
       >
-        <View style={styles.navbar}>
-          <MaterialCommunityIcons
-            name="home"
-            size={40}
-            color={COLORS.primaryGreen}
-          />
-          <View style={{ position: "relative" }}>
-            <MaterialCommunityIcons
-              name="cart"
-              size={24}
-              color={COLORS.primaryGreen}
-              onPress={() => navigation.navigate("cart")}
-            />
-            <Text style={styles.cartValue}>{cartValue}</Text>
+        <Navbar />
+        <ScrollView>
+          <View style={{padding:10,backgroundColor:'#BA0021'}}>
+            <View>
+              <Text style={{textTransform:'uppercase'}}>BreakFast</Text>
+            </View>
+            <View
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                
+              }}
+            >
+              {BreakFast.map((item, index) => {
+                return (
+                  <Pressable style={styles.fooditem}>
+                    <View key={index}>
+                      <Text>{item.name}</Text>
+                      <Text>Ksh.{item.price}</Text>
+                      <Pressable>
+                        <Text>Add</Text>
+                      </Pressable>
+                    </View>
+                  </Pressable>
+                );
+              })}
+            </View>
+            <View>
+              <Text style={{textTransform:'uppercase'}}>Main Course Dishes</Text>
+            </View>
+            <View
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+              }}
+            >
+              {MainCourses.map((item, i) => {
+                return (
+                  <Pressable style={styles.fooditem}>
+                    <View key={i}>
+                      <Text>{item.name}</Text>
+                      <Text>{item.price}</Text>
+                    </View>
+                    <Pressable>
+                    <Text>Add</Text>
+                    </Pressable>
+                  </Pressable>
+                );
+              })}
+            </View>
           </View>
-
-          <MaterialCommunityIcons
-            name="menu"
-            size={40}
-            color={COLORS.primaryGreen}
-            onPress={() => drawer.current.openDrawer()}
-          />
-        </View>
-
-        <View style={{ flex: 1 }}>
-          <SectionList
-            sections={sections}
-            keyExtractor={(item, index) => item.name + index}
-            renderItem={foodItem}
-            renderSectionHeader={sectionTitle}
-          />
-        </View>
+        </ScrollView>
+        <View></View>
       </DrawerLayoutAndroid>
     </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({
-  navbar: {
-    paddingTop: 50,
-    paddingHorizontal: 20,
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    height: 100,
-    borderBottomWidth: 1,
-    borderBottomColor: COLORS.light,
-  },
   fooditem: {
     // position: "relative",
     padding: 10,
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     justifyContent: "space-between",
-    backgroundColor: COLORS.white,
-
+    alignItems:'center',
+    backgroundColor: '#f5f5f5',
     marginVertical: 5,
     marginHorizontal: 5,
     borderRadius: 10,
+    // flexGrow:1,
   },
   cart: {
     backgroundColor: "white",
