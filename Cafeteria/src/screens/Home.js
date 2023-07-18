@@ -11,11 +11,9 @@ import COLORS from "../utility/Colors";
 import NavigationView from "../components/draweritems";
 import Navbar from "../components/Navbar";
 import FoodItems from "../components/foodItems";
-// import HumbergerModal from "../components/humbergerModal";
+import { addToCart } from "../slices/cartSlice";
 
 const Home = ({ navigation }) => {
-
-
   const drawerPosition = "right";
   const drawer = useRef(null);
 
@@ -37,5 +35,4 @@ const Home = ({ navigation }) => {
     </SafeAreaView>
   );
 };
-const styles = StyleSheet.create({});
 export default Home;

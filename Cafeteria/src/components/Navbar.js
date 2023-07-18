@@ -1,9 +1,13 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-// import { MaterialIcons } from "@expo/vector-icons";
 import COLORS from "../utility/Colors";
+import { useSelector } from "react-redux";
+
+
 const Navbar = ({ drawer, navigation,}) => {
+  const cart=useSelector((state)=>state.cart.cart)
+
   return (
     <View style={styles.navbar}>
       <MaterialCommunityIcons
@@ -19,7 +23,7 @@ const Navbar = ({ drawer, navigation,}) => {
           color={COLORS.primaryGreen}
           onPress={() => navigation.navigate("cart")}
         />
-        <Text style={styles.cartValue}>0</Text>
+        <Text style={styles.cartValue}>{cart.length}</Text>
       </View>
 
       <MaterialCommunityIcons

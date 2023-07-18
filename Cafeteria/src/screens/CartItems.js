@@ -3,8 +3,13 @@ import { View, Text, DrawerLayoutAndroid, SafeAreaView } from "react-native";
 import COLORS from "../utility/Colors";
 import NavigationView from "../components/draweritems";
 import Navbar from "../components/Navbar";
+import {useSelector } from "react-redux/es/hooks/useSelector";
+
+
 
 const CartItems = ({ navigation }) => {
+  const cart=useSelector((state)=>state.cart.cart)
+  console.log("cart items",cart)
   drawer = useRef(null);
   return (
     <SafeAreaView style={{ backgroundColor: COLORS.white, flex: 1 }}>

@@ -3,8 +3,13 @@ import React from "react";
 import BreakFast from "../Data/BreakfastData";
 import MainCourses from "../Data/LunchfastData";
 import COLORS from "../utility/Colors";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart } from "../slices/cartSlice";
 
 const FoodItems = () => {
+  const cart = useSelector((state) => state.cart.cart);
+  const dispatch = useDispatch();
+  // console.log(cart);
   const handlePress = () => {
     Alert.alert("Food Item alert", "Added to cart", [
       {
@@ -23,8 +28,15 @@ const FoodItems = () => {
       <View style={styles.container}>
         {BreakFast.map((item, index) => {
           return (
-            <Pressable style={styles.fooditem} onPress={handlePress} key={index}>
-              <View >
+            <Pressable
+              style={styles.fooditem}
+              onPress={() => {
+                handlePress;
+                dispatch(addToCart(item));
+              }}
+              key={index}
+            >
+              <View>
                 <Text style={styles.itemHeader}>{item.name}</Text>
                 <Text style={styles.priceText}>Ksh.{item.price}</Text>
               </View>
@@ -38,12 +50,17 @@ const FoodItems = () => {
       <View style={styles.container}>
         {MainCourses.map((item, i) => {
           return (
-            <Pressable style={styles.fooditem} key={i} onPress={handlePress}>
+            <Pressable
+              style={styles.fooditem}
+              key={i}
+              onPress={() => {
+                handlePress;
+                dispatch(addToCart(item));
+              }}
+            >
               <View>
                 <Text style={styles.itemHeader}>{item.name}</Text>
                 <Text style={styles.priceText}>Ksh.{item.price}</Text>
-
-            
               </View>
             </Pressable>
           );
@@ -61,7 +78,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: COLORS.white,
     fontWeight: "bold",
-    alignSelf:'center',
+    alignSelf: "center",
   },
   fooditem: {
     padding: 4,
@@ -77,7 +94,6 @@ const styles = StyleSheet.create({
     elevation: 8,
     shadowOpacity: 0.8,
     shadowRadius: 8,
-   
   },
 
   container: {
