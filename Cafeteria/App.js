@@ -9,7 +9,7 @@ import LandingPage from "./src/screens/LandingPage";
 import Login from "./src/screens/Login";
 import Register from "./src/screens/Register";
 import Home from "./src/screens/Home";
-import CartItems from "./src/screens/CartItems";
+import CartItems from "./src/screens/CartPage";
 import Profile from "./src/screens/Profile";
 import Deposit from "./src/screens/Deposit";
 import Statistics from "./src/screens/Statistics";

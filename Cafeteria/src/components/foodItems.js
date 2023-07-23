@@ -3,11 +3,11 @@ import React from "react";
 import BreakFast from "../Data/BreakfastData";
 import MainCourses from "../Data/LunchfastData";
 import COLORS from "../utility/Colors";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "../slices/cartSlice";
 
 const FoodItems = () => {
-  const cart = useSelector((state) => state.cart.cart);
+  // const cart = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
   // console.log(cart);
   const handlePress = () => {

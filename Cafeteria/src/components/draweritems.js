@@ -9,10 +9,12 @@ import {
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import COLORS from "../utility/Colors";
+import { useNavigation } from "@react-navigation/native";
 
 const image = require("../../assets/JKUAT.png");
 
-const NavigationView = ({ drawer, navigation }) => {
+const NavigationView = ({ drawer}) => {
+  const navigation=useNavigation()
   const closeDrawer = () => {
     drawer.current.closeDrawer();
   };

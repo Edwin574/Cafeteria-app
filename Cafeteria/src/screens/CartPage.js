@@ -3,32 +3,30 @@ import { View, Text, DrawerLayoutAndroid, SafeAreaView } from "react-native";
 import COLORS from "../utility/Colors";
 import NavigationView from "../components/draweritems";
 import Navbar from "../components/Navbar";
-import {useSelector } from "react-redux/es/hooks/useSelector";
+import { useSelector } from "react-redux";
+import CartItems from "../components/CartItems";
+// import { useNavigation } from "@react-navigation/native";
 
-
-
-const CartItems = ({ navigation }) => {
-  const cart=useSelector((state)=>state.cart.cart)
-  console.log("cart items",cart)
-  drawer = useRef(null);
+const CartPage = () => {
+  // const navigation = useNavigation();
+  const cartitems = useSelector((state) => state.cart.cart);
+  const drawer = useRef(null);
   return (
     <SafeAreaView style={{ backgroundColor: COLORS.white, flex: 1 }}>
       <DrawerLayoutAndroid
         ref={drawer}
         drawerWidth={300}
         drawerPosition="right"
-        renderNavigationView={() => (
-          <NavigationView drawer={drawer} navigation={navigation} />
-        )}
+        renderNavigationView={() => <NavigationView drawer={drawer} />}
       >
-        <Navbar drawer={drawer} navigation={navigation} />
+        <Navbar drawer={drawer} />
 
-        <View style={{ flex: 1, paddingTop: 50 }}>
-          <Text>You can view your orders</Text>
+        <View style={{ flex: 1, paddingTop: 10 }}>
+          <CartItems/>
         </View>
       </DrawerLayoutAndroid>
     </SafeAreaView>
   );
 };
 
-export default CartItems;
+export default CartPage;

@@ -15,8 +15,10 @@ import CustomButton from "../components/CustomButton";
 import CustomInput from "../components/CustomInput";
 import Loader from "../components/Loader";
 import COLORS from "../utility/Colors";
+import { useNavigation } from "@react-navigation/native";
 
-const Register = ({ navigation }) => {
+const Register = () => {
+  const navigation = useNavigation();
   const [inputs, setInputs] = useState({
     fullname: "",
     regNo: "",
@@ -25,7 +27,9 @@ const Register = ({ navigation }) => {
   });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-
+  const handleError = (error, input) => {
+    setErrors((prevState) => ({ ...prevState, [input]: error }));
+  };
   const validate = () => {
     Keyboard.dismiss();
     let isValid = true;
@@ -36,7 +40,7 @@ const Register = ({ navigation }) => {
     if (!inputs.regNo) {
       handleError("Please input registration number", "regNo");
       isValid = false;
-    } else if (!inputs.regNo.match(/^SCM\d{3}-\d{4}\/\d{4}$/)) {
+    } else if (!inputs.regNo.match(/^[A-Z]{3}$\d{3}-\d{4}\/\d{4}$/)) {
       handleError("Please input valid registration number", "regNo");
       isValid = false;
     }
@@ -70,9 +74,7 @@ const Register = ({ navigation }) => {
   const handleOnChange = (text, input) => {
     setInputs((prevState) => ({ ...prevState, [input]: text }));
   };
-  const handleError = (error, input) => {
-    setErrors((prevState) => ({ ...prevState, [input]: error }));
-  };
+
   return (
     <SafeAreaView style={{ backgroundColor: COLORS.white, flex: 1 }}>
       <Loader visible={loading} />

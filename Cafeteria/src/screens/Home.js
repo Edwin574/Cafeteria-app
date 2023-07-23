@@ -11,9 +11,11 @@ import COLORS from "../utility/Colors";
 import NavigationView from "../components/draweritems";
 import Navbar from "../components/Navbar";
 import FoodItems from "../components/foodItems";
-import { addToCart } from "../slices/cartSlice";
+import { useNavigation } from "@react-navigation/native";
 
-const Home = ({ navigation }) => {
+
+const Home = () => {
+const navigation=useNavigation()
   const drawerPosition = "right";
   const drawer = useRef(null);
 
