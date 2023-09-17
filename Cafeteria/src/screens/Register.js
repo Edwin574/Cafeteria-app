@@ -20,10 +20,12 @@ import { useNavigation } from "@react-navigation/native";
 const Register = () => {
   const navigation = useNavigation();
   const [inputs, setInputs] = useState({
-    fullname: "",
-    regNo: "",
+    first_name: "",
+    second_name:"",
+    email: "",
     phone: "",
     password: "",
+    re_password:"",
   });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -33,15 +35,20 @@ const Register = () => {
   const validate = () => {
     Keyboard.dismiss();
     let isValid = true;
-    if (!inputs.fullname) {
-      handleError("Please input full name", "fullname");
+    if (!inputs.first_name) {
+      handleError("Please input first name", "first_name");
       isValid = false;
     }
-    if (!inputs.regNo) {
-      handleError("Please input registration number", "regNo");
+    if (!inputs.second_name) {
+      handleError("Please input Second name", "second_name");
       isValid = false;
-    } else if (!inputs.regNo.match(/^[A-Z]{3}$\d{3}-\d{4}\/\d{4}$/)) {
-      handleError("Please input valid registration number", "regNo");
+    }
+    if (!inputs.email) {
+      handleError("Please input your Student Email", "email");
+      // isValid = false;
+    } else if (!inputs.email.match(/^[a-zA-Z0-9._%+-]+@students\.jkuat\.ac\.ke$/
+      )) {
+      handleError("Please input valid student Email", "email");
       isValid = false;
     }
     if (!inputs.phone) {
@@ -54,7 +61,13 @@ const Register = () => {
     } else if (inputs.password.length < 5) {
       handleError("Min password length of 5", "password");
       isValid = false;
+    }if(!inputs.re_password){
+      handleError("Please Retype Your password","re_password")
     }
+    // else if(inputs.password==inputs.re_password){
+    //   handleError("Passwords don't match","re_password")
+    //   isValid=false
+    // }
     if (isValid) {
       registerUser();
     }
@@ -92,25 +105,50 @@ const Register = () => {
           Enter Your Details to Register
         </Text>
         <View style={{ marginVertical: 20 }}>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+              gap:15,
+            }}
+          >
+            <View style={{flex:1}}>
+              <CustomInput
+                onChangeText={(text) => {
+                  handleOnChange(text, "first_name");
+                }}
+                label="First Name"
+                IconName="account"
+                placeholder="Enter your first name"
+                error={errors.first_name}
+                onFocus={() => handleError(null, "first_name")}
+              />
+            </View>
+            <View style={{flex:1}}>
+              <CustomInput
+                onChangeText={(text) => {
+                  handleOnChange(text, "second_name");
+                }}
+                label="Second Name"
+                IconName="account"
+                placeholder="Enter your surname"
+                error={errors.second_name}
+                onFocus={() => handleError(null, "second_name")}
+              />
+            </View>
+          </View>
+
           <CustomInput
             onChangeText={(text) => {
-              handleOnChange(text, "fullname");
+              handleOnChange(text, "email");
             }}
-            label="Full Name"
-            IconName="account"
-            placeholder="Enter your full name"
-            error={errors.fullname}
-            onFocus={() => handleError(null, "fullname")}
-          />
-          <CustomInput
-            onChangeText={(text) => {
-              handleOnChange(text, "regNo");
-            }}
-            label="Registration Number"
-            IconName="lead-pencil"
-            placeholder="Enter your reg number"
-            error={errors.regNo}
-            onFocus={() => handleError(null, "regNo")}
+            label="Email"
+            IconName="email"
+            placeholder="Student Email"
+            error={errors.email}
+            onFocus={() => handleError(null, "email")}
           />
           <CustomInput
             onChangeText={(text) => {
@@ -131,6 +169,17 @@ const Register = () => {
             placeholder="Enter your password"
             error={errors.password}
             onFocus={() => handleError(null, "password")}
+            password
+          />
+          <CustomInput
+            onChangeText={(text) => {
+              handleOnChange(text, "re_password");
+            }}
+            label="Confirm Password"
+            IconName="lock-outline"
+            placeholder="Confirm your Password"
+            error={errors.re_password}
+            onFocus={() => handleError(null, "re_password")}
             password
           />
         </View>

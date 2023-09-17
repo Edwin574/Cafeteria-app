@@ -14,7 +14,7 @@ const CustomInput = ({
   const [hidePassword, setHidePassword] = useState(password);
   const [isFocused, setIsFocused] = useState(false);
   return (
-    <View style={{ marginBottom: 20 }}>
+    <View style={{ marginBottom: 10 }}>
       <Text style={styles.label}>{label}</Text>
       <View
         style={[
@@ -31,7 +31,7 @@ const CustomInput = ({
       >
         <MaterialCommunityIcons
           name={IconName}
-          size={24}
+          size={15}
           color={COLORS.black}
         />
         <TextInput
@@ -71,15 +71,19 @@ const styles = StyleSheet.create({
     color: COLORS.mediumGreen,
   },
   inputContainer: {
-    height: 60,
+    height: 45,
+    // width:200,
     backgroundColor: "transparent",
     flexDirection: "row",
     paddingHorizontal: 15,
-    borderBottomWidth: 2.5,
-    borderBottomColor: COLORS.primaryGreen,
+    borderWidth: 1,
+    borderColor: COLORS.primaryGreen,
+    borderRadius:10,
     alignItems: "center",
     display: "flex",
     gap: 5,
+    flex:1,
+    // flexGrow:1,
   },
 });
 export default CustomInput;

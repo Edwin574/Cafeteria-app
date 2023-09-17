@@ -16,15 +16,15 @@ import Loader from "../components/Loader";
 import COLORS from "../utility/Colors";
 
 const Login = ({ navigation }) => {
-  const [inputs, setInputs] = useState({ regNo: "", password: "" });
+  const [inputs, setInputs] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
   const validate = async () => {
     Keyboard.dismiss();
     let isvalid = true;
-    if (!inputs.regNo) {
-      handleError("please input registration number", "regNo");
+    if (!inputs.email) {
+      handleError("please input email address", "email");
       isvalid = false;
     }
     if (!inputs.password) {
@@ -43,7 +43,7 @@ const Login = ({ navigation }) => {
       if (userData) {
         userData = JSON.parse(userData);
         if (
-          inputs.regNo == userData.regNo &&
+          inputs.email == userData.email &&
           inputs.password == userData.password
         ) {
           navigation.navigate("home");
@@ -84,14 +84,14 @@ const Login = ({ navigation }) => {
         <View style={{ marginVertical: 20 }}>
           <CustomInput
             onChangeText={(text) => {
-              handleOnChange(text, "regNo");
+              handleOnChange(text, "email");
             }}
-            label="Registration Number"
-            IconName="lead-pencil"
-            placeholder="Enter your reg number"
-            error={errors.regNo}
+            label="Email Address"
+            IconName="email"
+            placeholder="Enter your student email"
+            error={errors.email}
             onFocus={() => {
-              handleError(null, "regNo");
+              handleError(null, "email");
             }}
           />
           <CustomInput
