@@ -1,0 +1,6 @@
+[client]
+
+database= cafeteria
+user=edu
+password=kali@linux
+default-character-set=utf8
